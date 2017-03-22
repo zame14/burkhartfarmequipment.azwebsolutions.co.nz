@@ -1,0 +1,79 @@
+// Use this file to overwrite the basic Bootstrap variables and add your own variables
+// To overwrite a Bootstrap variable you don´t have to touch the Bootstrap folder. 
+// Just copy a variable from /sass/bootstrap/_variables.scss, paste it here and edit the value.
+// As example you find one of the most important Bootstrap variable below: $brand-primary.
+// Thats the ugly Bootstrap blue used for all the links, primary buttons etc.
+// Just add your color code here, compile the theme.scss file to change this color everywhere
+
+
+$brand-primary:         #f56b0b; //#ff6d5a
+
+// Basics of a navbar
+$navbar-height:                    60px;
+$navbar-margin-bottom:             0px;
+$navbar-border-radius:             0px;
+
+$grid-gutter-width: 28px;
+$grid-gutter-width-base: $grid-gutter-width;
+
+$font-family-nunito: 'Nunito Sans', sans-serif;
+$font-family-montserrat: 'Montserrat', sans-serif;
+
+$designWidth: 1150;
+
+$bfe-default: #333333;
+$bfe-default-background: #eeeeee;
+$bfe-green: #035d10;
+$bfe-green-hover: #026811;
+$bfe-charcol: #363636;
+$bfe-pale-grey: #e8e8e8;
+
+$screen-md-max: 1199px;
+
+@function get-vw($size) {
+  $vw-context: ($designWidth * .01) * 1px;
+  @return ($size / $vw-context) * 1vw;
+}
+@function get-vw-important($size) {
+  $vw-context: ($designWidth * .01) * 1px;
+  @return ($size / $vw-context) * 1vw !important;
+}
+@function get-px($size) {
+  $px-context: strip-units($size / $designWidth);
+  @return ($px-context * $screen-md-max);
+}
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@mixin height($size) {
+  height: get-px($size);
+  @media (min-width: $screen-md-max) and (max-width: ($designWidth - 1) * 1px) {
+    height: get-vw($size);
+  }
+  @media (min-width: $designWidth * 1px) {
+    height: $size;
+  }
+}
+
+@mixin hpTransition($p:all, $t:300ms) {
+  -webkit-transition: $p $t ease-in-out;
+  -moz-transition: $p $t ease-in-out;
+  -ms-transition: $p $t ease-in-out;
+  -o-transition: $p $t ease-in-out;
+  transition: $p $t ease-in-out;
+}
+@mixin hpScale($s) {
+  transform: scale($s);
+  -webkit-transform: scale($s);/* Saf3.1+, Chrome */
+  -moz-transform: scale($s); /* FF3.5+ */
+  -ms-transform: scale($s); /* IE9 */
+  -o-transform: scale($s); /* Opera 10.5+ */
+}
+@mixin hpBlur($s) {
+  filter: blur($s);
+  -webkit-filter: blur($s);/* Saf3.1+, Chrome */
+  -moz-filter: blur($s); /* FF3.5+ */
+  -ms-filter: blur($s); /* IE9 */
+  -o-filter: blur($s); /* Opera 10.5+ */
+}
