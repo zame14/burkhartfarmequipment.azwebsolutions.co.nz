@@ -104,3 +104,12 @@ function bootstrap_styles_for_gravityforms_fields($content, $field, $value, $lea
 
     return $content;
 }
+
+function request($name) {
+    $value = '';
+    if(isset($_REQUEST[$name])) {
+        $value = $_REQUEST[$name];
+        if(is_string($value)) $value = trim($value);
+    }
+    return $value;
+}

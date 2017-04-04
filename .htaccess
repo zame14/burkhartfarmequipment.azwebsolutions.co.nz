@@ -1,0 +1,32 @@
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# END WordPress
+
+# Compression Optimisations
+<FilesMatch "\.(js|css|php|htm|html|woff|svg)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+
+# Content Expiry
+ExpiresActive on
+ExpiresDefault "access 2 days"
+ExpiresByType text/html "access 2 day"
+ExpiresByType text/css "access 1 week"
+ExpiresByType application/x-javascript "access 1 week"
+ExpiresByType text/javascript "access 1 week"
+ExpiresByType image/jpeg "access 1 month"
+ExpiresByType text/plain "access 1 month"
+ExpiresByType image/gif "access 1 month"
+ExpiresByType image/png "access 1 month"
+ExpiresByType image/svg+xml "access 1 month"
+ExpiresByType application/pdf "access 1 month"
+ExpiresByType application/x-shockwave-flash "access 1 month"

@@ -27,8 +27,10 @@ $bfe-green: #035d10;
 $bfe-green-hover: #026811;
 $bfe-charcol: #363636;
 $bfe-pale-grey: #e8e8e8;
+$bfe-blue: #008dc8;
+$bfe-red: #db0000;
 
-$screen-md-max: 1199px;
+$screen-md-max: 1150px;
 
 @function get-vw($size) {
   $vw-context: ($designWidth * .01) * 1px;
@@ -55,6 +57,51 @@ $screen-md-max: 1199px;
     height: $size;
   }
 }
+@mixin font-size($size) {
+  font-size: get-px($size);
+  @media (min-width: $screen-md-max) and (max-width: ($designWidth - 1) * 1px) {
+    font-size: get-vw($size);
+  }
+  @media (min-width: $designWidth * 1px) {
+    font-size: $size;
+  }
+}
+@mixin line-height($size) {
+  line-height: get-px($size);
+  @media (min-width: $screen-md-max) and (max-width: ($designWidth - 1) * 1px) {
+    line-height: get-vw($size);
+  }
+  @media (min-width: $designWidth * 1px) {
+    line-height: $size;
+  }
+}
+@mixin marginFull($sizeT, $sizeR, $sizeB, $sizeL) {
+  margin: get-px($sizeT) get-px($sizeR)get-px($sizeB) get-px($sizeL);
+  @media (min-width: $screen-md-max) and (max-width: ($designWidth - 1) * 1px) {
+    margin: get-vw($sizeT) get-vw($sizeR)get-vw($sizeB) get-vw($sizeL);
+  }
+  @media (min-width: $designWidth * 1px) {
+    margin: $sizeT $sizeR $sizeB $sizeL;
+  }
+}
+@mixin width($size) {
+  width: get-px($size);
+  @media (min-width: $screen-md-max) and (max-width: ($designWidth - 1) * 1px) {
+    width: get-vw($size);
+  }
+  @media (min-width: $designWidth * 1px) {
+    width: $size;
+  }
+}
+@mixin bottom($size) {
+  bottom: get-px($size);
+  @media (min-width: $screen-md-max) and (max-width: ($designWidth - 1) * 1px) {
+    bottom: get-vw($size);
+  }
+  @media (min-width: $designWidth * 1px) {
+    bottom: $size;
+  }
+}
 
 @mixin hpTransition($p:all, $t:300ms) {
   -webkit-transition: $p $t ease-in-out;
@@ -76,4 +123,21 @@ $screen-md-max: 1199px;
   -moz-filter: blur($s); /* FF3.5+ */
   -ms-filter: blur($s); /* IE9 */
   -o-filter: blur($s); /* Opera 10.5+ */
+}
+
+@keyframes bounce {
+  0%, 20%, 60%, 100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+  }
+
+  40% {
+    -webkit-transform: translateY(-20px);
+    transform: translateY(-20px);
+  }
+
+  80% {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
 }
