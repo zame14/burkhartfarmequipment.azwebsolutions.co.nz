@@ -63,7 +63,7 @@ function bfeEquipment($atts) {
         ($product->Item_Price <> '') ? $display_price = '$' . $product->Item_Price . ' +GST' : $display_price = 'For sale price: Call';
         $ref = strtolower($product->Item_Name);
         $ref = str_replace(" ", "_", $ref);
-        ($product->SubCategory_ID == 0) ? $item = $product->SubCategory_Name : $item = 'Used Equipment';
+        ($product->SubCategory_ID <> 0) ? $item = $product->SubCategory_Name : $item = 'Used Equipment';
         $item .= ' - ' . $product->Item_Name;
         $enquire_link = add_query_arg(array(
             'item' => $item
@@ -73,19 +73,19 @@ function bfeEquipment($atts) {
         <div class="product-wrapper">
             <a name="top"></a>
             <div class="row">
-                <div class="col-xs-12 col-md-6 image-wrapper">';
+                <div class="col-xs-12 col-md-6 image-wrapper ' . $sold_class . '">';
                     if(count($product_images) > 0) {
                         // this product has more than images - use owl carousel
                         $html .= '
                         <div class="owl-carousel owl-theme">
-                            <div><img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '"></div>';
+                            <div><img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '" data-zoom-image="' . $product->Item_Photo_URL . '" class="first"></div>';
                             foreach($product_images as $image) {
-                                $html .= '<div><img src="' . $image . '" alt="' . $product->Item_Name . '"></div>';
+                                $html .= '<div><img src="' . $image . '" alt="' . $product->Item_Name . '" data-zoom-image="' . $image . '"></div>';
                             }
                         $html .= '
                         </div>';
                     } else {
-                        $html .= '<img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '">';
+                        $html .= '<img src="' . $product->Item_Photo_URL . '" data-zoom-image="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '" class="first">';
                     }
                     $html .= ' 
                     <div class="sold-overlay ' . $sold_class . '"><span>SOLD</span></div>

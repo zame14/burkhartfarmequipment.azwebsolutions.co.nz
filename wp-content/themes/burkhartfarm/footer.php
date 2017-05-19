@@ -11,7 +11,7 @@
     <div class="container">
         <div class="row">
             <div class="cta-wrapper">
-                <p>Buy direct from Burkhart and save</p>
+                <p>Built in New Zealand for New Zealand conditions</p>
             </div>
         </div>
         <div class="row footer-details-row">

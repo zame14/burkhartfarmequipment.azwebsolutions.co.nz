@@ -14,6 +14,7 @@ function bfe_enqueue_styles() {
     wp_enqueue_style( 'google_font_nunito', 'https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800');
     wp_enqueue_style( 'google_font_montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:400,700');
     wp_enqueue_script( 'owl-carousel', get_stylesheet_directory_uri() . '/node_modules/owl.carousel/dist/owl.carousel.js');
+    wp_enqueue_script( 'elevate-zoom', get_stylesheet_directory_uri() . '/js/jquery.elevatezoom.js');
     wp_enqueue_script('understap-theme', get_stylesheet_directory_uri() . '/js/theme.js?' . filemtime(get_stylesheet_directory() . '/js/theme.js'), array('jquery'));
 }
 
@@ -44,6 +45,7 @@ function bfe_register_menus() {
     );
 }
 
+
 add_image_size( 'home_banner', 1632, 450, true);
 add_image_size( 'odds_ends_banner', 1150, 400, true);
 add_image_size( 'inside_banner', 1150, 300, true);
@@ -60,6 +62,14 @@ if(request('new_search')) {
     // used equipment search
     $search_str = request('new_search');
     $url = add_query_arg('srch', $search_str, get_page_link(30));
+    header('Location: ' . $url);
+    exit;
+}
+
+if(request('odds_search')) {
+    // used equipment search
+    $search_str = request('odds_search');
+    $url = add_query_arg('srch', $search_str, get_page_link(38));
     header('Location: ' . $url);
     exit;
 }
@@ -134,13 +144,29 @@ function getProductsByCategory($category, $search_str = '') {
 function getProductsByCategoryID($id, $search_str = '') {
     global $wpdb;
     $sql = '
-    SELECT i.Item_ID, Item_Name, Item_Slug, Item_Description, Item_Price, Item_Photo_URL, Category_ID, Category_Name, SubCategory_Name, SubCategory_Name, m.Meta_Value
+    SELECT i.Item_ID, Item_Name, Item_Slug, Item_Description, Item_Price, Item_Photo_URL, Category_ID, Category_Name, SubCategory_ID, SubCategory_Name, SubCategory_Name, m.Meta_Value
     FROM wp_UPCP_Items i
     LEFT OUTER JOIN wp_UPCP_Fields_Meta m
     ON i.Item_ID = m.Item_ID
     AND m.Field_ID = 4
     WHERE Item_Display_Status = "Show"';
     $sql .= ' AND Category_ID = "' . $id . '"';
+    if($search_str <> '') {
+        $sql .= ' AND Meta_Value LIKE "%' . $search_str . '%"';
+    }
+    $products = $wpdb->get_results($sql);
+    return $products;
+}
+function getProductsByID($id, $search_str = '') {
+    global $wpdb;
+    $sql = '
+    SELECT i.Item_ID, Item_Name, Item_Slug, Item_Description, Item_Price, Item_Photo_URL, Category_ID, Category_Name, SubCategory_ID, SubCategory_Name, SubCategory_Name, m.Meta_Value
+    FROM wp_UPCP_Items i
+    LEFT OUTER JOIN wp_UPCP_Fields_Meta m
+    ON i.Item_ID = m.Item_ID
+    AND m.Field_ID = 4
+    WHERE Item_Display_Status = "Show"';
+    $sql .= ' AND i.Item_ID = "' . $id . '"';
     if($search_str <> '') {
         $sql .= ' AND Meta_Value LIKE "%' . $search_str . '%"';
     }

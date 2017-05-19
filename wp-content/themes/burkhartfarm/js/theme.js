@@ -12,9 +12,53 @@ jQuery(function($) {
             items:1,
             margin:0,
             nav:true,
-            navText:['<span class="fa fa-angle-left"></span>','<span class="fa fa-angle-right"></span>']
+            autoHeight:true,
+            navText:['<span class="fa fa-angle-left"></span><i>prev</i>','<i>next</i><span class="fa fa-angle-right"></span>']
         });
+
+        if($(document).width() > 767) {
+            $(".owl-carousel").on('changed.owl.carousel', function (event) {
+                $(".product-wrapper .image-wrapper .owl-item img").removeClass('first');
+                setTimeout(function () {
+                    $(".product-wrapper .image-wrapper .owl-item.active img").addClass('first');
+                    $(".product-wrapper .image-wrapper img.first").hover().elevateZoom({
+                        zoomType: "lens",
+                        lensShape: "round",
+                        lensSize: 200,
+                        responsive: true,
+                        containLensZoom: true
+                    });
+                }, 500);
+            });
+        }
+        /*
+        var img = $(".product-wrapper .image-wrapper .owl-item img");
+        img.elevateZoom({
+            zoomType: "lens",
+            lensShape: "round",
+            lensSize: 200,
+            responsive: true
+        });
+        //Remove
+        $('.zoomContainer').remove();
+        img.removeData('elevateZoom');
+        img.removeData('zoomImage');
+
+        img.elevateZoom({
+            zoomType: "lens",
+            lensShape: "round",
+            lensSize: 200,
+            responsive: true
+        });
+        */
     }
+    $(".product-wrapper .image-wrapper img.first").elevateZoom({
+        zoomType : "lens",
+        lensShape : "round",
+        lensSize : 200,
+        responsive: true,
+        containLensZoom: true
+    });
     $(window).resize(function() {
         //setMegaMenuWidth();
         setOddsEndsWrapperHeight();
@@ -33,6 +77,7 @@ jQuery(function($) {
     $(".close-search").click(function() {
         $(".search-container").removeClass('show-search');
     });
+
 });
 
 function setDotsBgHeight() {
@@ -51,7 +96,7 @@ function setMegaMenuWidth() {
 
 function setOddsEndsWrapperHeight() {
     var $ = jQuery;
-    if($(document).width() > 767) {
+    if($(document).width() > 767 && $(document).width() < 1150) {
         var h = $(".odds-ends-wrapper img").height();
         $(".odds-ends-wrapper").css('height', h);
     }
