@@ -15,6 +15,7 @@ function bfe_enqueue_styles() {
     wp_enqueue_style( 'google_font_montserrat', 'https://fonts.googleapis.com/css?family=Montserrat:400,700');
     wp_enqueue_script( 'owl-carousel', get_stylesheet_directory_uri() . '/node_modules/owl.carousel/dist/owl.carousel.js');
     wp_enqueue_script( 'elevate-zoom', get_stylesheet_directory_uri() . '/js/jquery.elevatezoom.js');
+    wp_enqueue_script( 'waypoint', get_stylesheet_directory_uri() . '/node_modules/waypoints/lib/noframework.waypoints.min.js');
     wp_enqueue_script('understap-theme', get_stylesheet_directory_uri() . '/js/theme.js?' . filemtime(get_stylesheet_directory() . '/js/theme.js'), array('jquery'));
 }
 
@@ -47,7 +48,7 @@ function bfe_register_menus() {
 
 
 add_image_size( 'home_banner', 1632, 450, true);
-add_image_size( 'odds_ends_banner', 1150, 400, true);
+add_image_size( 'odds_ends_banner', 1150, 800, true);
 add_image_size( 'inside_banner', 1150, 300, true);
 
 if(request('used_search')) {

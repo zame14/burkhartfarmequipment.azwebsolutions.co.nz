@@ -9467,6 +9467,7 @@ a:hover, a:active, a:visited, a:focus {
       color: #ffffff;
       text-transform: uppercase;
       font-size: 30px;
+      line-height: 32px;
       font-weight: 700; }
   #footer .container.lower-footer {
     background-color: #000000;
@@ -9538,7 +9539,7 @@ h1.home-template {
   text-transform: uppercase;
   font-weight: 800;
   font-family: "Nunito Sans", sans-serif;
-  margin: 0 0 20px 0; }
+  margin: 0 0 15px 0; }
 
 .category-panel .category-panel-item {
   position: relative;
@@ -9594,13 +9595,13 @@ h1.home-template {
 
 #odds-ends-cta .odds-ends-wrapper {
   position: relative;
-  height: 400px; }
+  height: 800px; }
   @media (min-width: 1150px) and (max-width: 1149px) {
     #odds-ends-cta .odds-ends-wrapper {
-      height: 34.78261vw; } }
+      height: 69.56522vw; } }
   @media (min-width: 1150px) {
     #odds-ends-cta .odds-ends-wrapper {
-      height: 400px; } }
+      height: 800px; } }
   #odds-ends-cta .odds-ends-wrapper img {
     width: 100%;
     height: auto; }
@@ -9621,16 +9622,32 @@ h1.home-template {
     position: absolute;
     z-index: 2;
     border-radius: 5px;
+    transform: translate(-50%, -100%);
+    -webkit-transform: translate(-50%, -100%);
+    visibility: hidden;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out;
     left: 50%;
-    transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    top: 50%; }
+    top: 0; }
     #odds-ends-cta .odds-ends-wrapper .odds-cta-wrapper p {
       color: #ffffff;
       font-weight: 600;
       font-size: 22px; }
     #odds-ends-cta .odds-ends-wrapper .odds-cta-wrapper a {
       margin-top: 10px; }
+  #odds-ends-cta .odds-ends-wrapper .odds-cta-wrapper.show-cta {
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    top: 50%;
+    visibility: visible;
+    -webkit-transition: all 500ms ease-in-out;
+    -moz-transition: all 500ms ease-in-out;
+    -ms-transition: all 500ms ease-in-out;
+    -o-transition: all 500ms ease-in-out;
+    transition: all 500ms ease-in-out; }
 
 #footer-menu .menu-item {
   float: none;
@@ -10007,8 +10024,8 @@ h1.home-template {
   text-align: center; }
   .product-intro p {
     font-weight: 600;
-    font-size: 24px;
-    line-height: 30px; }
+    font-size: 20px;
+    line-height: 26px; }
 
 .policy-wrapper p {
   font-weight: 600;
@@ -10428,7 +10445,10 @@ hr {
     #footer h4 {
       font-size: 14px; }
   #wpgmaps_directions_edit_1 select {
-    width: 60% !important; } }
+    width: 60% !important; }
+  .product-intro p {
+    font-size: 18px;
+    line-height: 22px; } }
 
 /* Mobile */
 @media screen and (max-width: 767px) {
@@ -10457,7 +10477,8 @@ hr {
       top: 0;
       left: 0;
       transform: translate(0, 0);
-      -webkit-transform: translate(0, 0); }
+      -webkit-transform: translate(0, 0);
+      visibility: visible; }
   #main {
     padding-bottom: 40px; }
   #footer .cta-wrapper p {

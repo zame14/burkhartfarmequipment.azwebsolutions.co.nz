@@ -232,6 +232,7 @@ a:hover, a:active, a:visited, a:focus {
       color: #ffffff;
       text-transform: uppercase;
       font-size: 30px;
+      line-height: 32px;
       font-weight: 700;
     }
   }
@@ -323,7 +324,7 @@ h1.home-template {
   text-transform: uppercase;
   font-weight: 800;
   font-family: $font-family-nunito;
-  margin: 0 0 20px 0;
+  margin: 0 0 15px 0;
 }
 .category-panel {
   .category-panel-item {
@@ -360,7 +361,7 @@ h1.home-template {
   }
   .odds-ends-wrapper {
     position: relative;
-    @include height(400px);
+    @include height(800px);
     img {
       width: 100%;
       height: auto;
@@ -383,10 +384,12 @@ h1.home-template {
       position: absolute;
       z-index: 2;
       border-radius: 5px;
+      transform: translate(-50%, -100%);
+      -webkit-transform: translate(-50%, -100%);
+      visibility: hidden;
+      @include hpTransition(all, 500ms);
       left: 50%;
-      transform: translate(-50%, -50%);
-      -webkit-transform: translate(-50%, -50%);
-      top: 50%;
+      top: 0;
       p {
         color: #ffffff;
         font-weight: 600;
@@ -395,6 +398,13 @@ h1.home-template {
       a {
         margin-top: 10px;
       }
+    }
+    .odds-cta-wrapper.show-cta {
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
+      top: 50%;
+      visibility: visible;
+      @include hpTransition(all, 500ms);
     }
   }
 }
@@ -750,8 +760,8 @@ h1.home-template {
   text-align: center;
   p {
     font-weight: 600;
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 20px;
+    line-height: 26px;
   }
 }
 .policy-wrapper {
@@ -1105,6 +1115,10 @@ hr {
   #wpgmaps_directions_edit_1 select {
     width: 60% !important;
   }
+  .product-intro p {
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
 /* Mobile */
 @media screen and (max-width: 767px) {
@@ -1142,6 +1156,7 @@ hr {
         left: 0;
         transform: translate(0, 0);
         -webkit-transform: translate(0, 0);
+        visibility: visible;
       }
     }
   }

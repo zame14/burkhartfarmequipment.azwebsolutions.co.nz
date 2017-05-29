@@ -52,13 +52,15 @@ jQuery(function($) {
         });
         */
     }
-    $(".product-wrapper .image-wrapper img.first").elevateZoom({
-        zoomType : "lens",
-        lensShape : "round",
-        lensSize : 200,
-        responsive: true,
-        containLensZoom: true
-    });
+    if($(document).width() > 767) {
+        $(".product-wrapper .image-wrapper img.first").elevateZoom({
+            zoomType: "lens",
+            lensShape: "round",
+            lensSize: 200,
+            responsive: true,
+            containLensZoom: true
+        });
+    }
     $(window).resize(function() {
         //setMegaMenuWidth();
         setOddsEndsWrapperHeight();
@@ -77,7 +79,16 @@ jQuery(function($) {
     $(".close-search").click(function() {
         $(".search-container").removeClass('show-search');
     });
-
+    if($("#odds-ends-cta").length) {
+        if($(document).width() > 767) {
+            var waypoint = new Waypoint({
+                element: document.getElementById('odds-ends-cta'),
+                handler: function() {
+                    $(".odds-cta-wrapper").addClass('show-cta');
+                }
+            });
+        }
+    }
 });
 
 function setDotsBgHeight() {

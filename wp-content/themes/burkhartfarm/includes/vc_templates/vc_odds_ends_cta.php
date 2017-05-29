@@ -64,7 +64,7 @@ function oddsEndsCTA($atts) {
             $html .= '
             <a class="btn btn-default" href="' . $button_link . '">' . $button_text . '</a>
         </div>
-        <div class="overlay"></div>
+        <div class="overlay-r"></div>
     </div>';
     return $html;
 }
