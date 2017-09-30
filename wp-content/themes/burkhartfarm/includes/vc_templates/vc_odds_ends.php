@@ -19,6 +19,7 @@ function bfeOddsEnds() {
             $product_images = getExtraProductImages($product->Item_ID);
             $extras = getProductExtras($product->Item_ID, 1);
             $extras_date = getProductExtras($product->Item_ID, 2);
+            $video_url = getProductVideo($product->Item_ID);
             $html .= '
             <div class="product-wrapper">
                 <a name="top"></a>
@@ -28,14 +29,14 @@ function bfeOddsEnds() {
                 // this product has more than images - use owl carousel
                 $html .= '
                             <div class="owl-carousel owl-theme">
-                                <div><img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '" class="first"></div>';
+                                <div><img src="' . wp_make_link_relative($product->Item_Photo_URL) . '" alt="' . $product->Item_Name . '" class="first"></div>';
                 foreach($product_images as $image) {
-                    $html .= '<div><img src="' . $image . '" alt="' . $product->Item_Name . '"></div>';
+                    $html .= '<div><img src="' . wp_make_link_relative($image) . '" alt="' . $product->Item_Name . '"></div>';
                 }
                 $html .= '
                             </div>';
             } else {
-                $html .= '<img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '" class="first">';
+                $html .= '<img src="' . wp_make_link_relative($product->Item_Photo_URL) . '" alt="' . $product->Item_Name . '" class="first">';
             }
             $html .= '    
                     </div>
@@ -61,7 +62,17 @@ function bfeOddsEnds() {
                     <div class="enquire-btn-wrapper"><a href="' . get_page_link(38) . '" class="btn btn-default">Back to Odds & Ends</a></div>
                     </div>
                     <hr />
-                </div>
+                </div>';
+                if($video_url <> '') {
+                    // video to display
+                    $html .= '
+                    <div class="video-wrapper">
+                        <h3>Watch Video</h3>
+                        <div class="fb-video" data-href="' . $video_url . '" data-width="500" data-show-text="false"></div>                       
+                    </div>
+                    <hr />';
+                }
+            $html .= '
             </div>';
             $count++;
         }
@@ -111,7 +122,7 @@ function bfeOddsEnds() {
                 <div class="col-xs-12 col-md-4 search-panel">
                     <a href="' . $slug . '?' . $ref . '">
                         <div class="image-wrapper">
-                            <img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '">
+                            <img src="' . wp_make_link_relative($product->Item_Photo_URL) . '" alt="' . $product->Item_Name . '">
                         </div>
                         <div class="details-wrapper odds">
                             <h2>' . $product->Item_Name . '</h2>                  

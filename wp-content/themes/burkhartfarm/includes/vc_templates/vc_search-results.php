@@ -48,7 +48,7 @@ function bfeSearch() {
             <div class="col-xs-12 col-md-4 search-panel">
                 <a href="' . $slug . '#' . $ref . '">
                     <div class="image-wrapper">
-                        <img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '">
+                        <img src="' . wp_make_link_relative($product->Item_Photo_URL) . '" alt="' . $product->Item_Name . '">
                         <div class="sold-overlay ' . $sold_class . '"><span>SOLD</span></div>
                     </div>
                     <div class="details-wrapper">

@@ -79,6 +79,7 @@ jQuery(function($) {
     $(".close-search").click(function() {
         $(".search-container").removeClass('show-search');
     });
+    /*
     if($("#odds-ends-cta").length) {
         if($(document).width() > 767) {
             var waypoint = new Waypoint({
@@ -89,6 +90,7 @@ jQuery(function($) {
             });
         }
     }
+    */
 });
 
 function setDotsBgHeight() {

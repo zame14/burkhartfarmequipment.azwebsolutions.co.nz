@@ -50,11 +50,12 @@ function bfeNewEquipment()
             ($has_sold == "Yes") ? $sold_class = 'sold' : $sold_class = '';
             $ref = strtolower($product->Item_Name);
             $ref = str_replace(" ", "_", $ref);
+            $image = wp_make_link_relative($product->Item_Photo_URL);
             $html .= '
             <div class="col-xs-12 col-md-4 search-panel">
                 <a href="' . $slug . '#' . $ref . '">
                     <div class="image-wrapper">
-                        <img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '">
+                        <img src="' . $image . '" alt="' . $product->Item_Name . '">
                         <div class="sold-overlay ' . $sold_class . '"><span>SOLD</span></div>
                     </div>
                     <div class="details-wrapper">

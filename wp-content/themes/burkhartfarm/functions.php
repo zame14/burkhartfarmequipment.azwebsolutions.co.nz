@@ -124,6 +124,12 @@ function getProductSlug($id) {
         case 5:
             $slug = get_page_link(36);
             break;
+        case 6:
+            $slug = get_page_link(656);
+            break;
+        case 7:
+            $slug = get_page_link(817);
+            break;
         default:
             $slug = get_page_link(37);
     }
@@ -132,7 +138,7 @@ function getProductSlug($id) {
 
 function getProductsByCategory($category, $search_str = '') {
     global $wpdb;
-    $sql = 'SELECT Item_ID, Item_Name, Item_Slug, Item_Description, Item_Price, Item_Photo_URL, Category_ID, Category_Name, SubCategory_Name, SubCategory_Name FROM wp_UPCP_Items WHERE Item_Display_Status = "Show"';
+    $sql = 'SELECT Item_ID, Item_Name, Item_Slug, Item_Description, Item_Price, Item_Photo_URL, Category_ID, Category_Name, SubCategory_Name, SubCategory_ID, SubCategory_Name FROM wp_UPCP_Items WHERE Item_Display_Status = "Show"';
     $sql .= ' AND SubCategory_Name = "' . $category . '"';
     if($search_str <> '') {
 
@@ -221,26 +227,10 @@ function getProductExtras($productid, $fieldid) {
     return $result[0]->Meta_Value;
 }
 
-// facebook stream
-function facebook_feed() {
-    $FBpage = file_get_contents('https://graph.facebook.com/628079593954120/feed?access_token=416237291746252|ELVzlxEEclLl3uDlWpqhDTLn2fY');
-    //Interpret data with JSON
-    $FBdata = json_decode($FBpage);
-    //Loop through data for each news item
-    $count = 1;
-    $html = '
-    <div class="facebook-feed-wrapper">
-        <ul>';
-    foreach ($FBdata->data as $news ) {
-        if (!empty($news->message) && !empty($news->picture) && $count <= 6) {
-            $html .= '<li style="background: url(' . $news->picture . ')"></li>';
-            $count++;
-        }
-    }
-    $html .= '
-        </ul>
-    </div>
-    <p class="facebook-link-wrapper"><a href="https://www.facebook.com/Burkhart-Farm-Equipment-Ltd-628079593954120/" target="_blank"><span class="fa fa-facebook-square"></span> Follow us</a></p>';
+function getProductVideo($productid) {
+    global $wpdb;
+    $sql = 'SELECT Item_Video_URL FROM wp_UPCP_Videos WHERE Item_ID = ' . $productid;
+    $result = $wpdb->get_results($sql);
 
-    return $html;
+    return $result[0]->Item_Video_URL;
 }

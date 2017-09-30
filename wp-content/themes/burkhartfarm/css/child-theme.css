@@ -9622,16 +9622,16 @@ h1.home-template {
     position: absolute;
     z-index: 2;
     border-radius: 5px;
-    transform: translate(-50%, -100%);
-    -webkit-transform: translate(-50%, -100%);
-    visibility: hidden;
+    transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
     -webkit-transition: all 500ms ease-in-out;
     -moz-transition: all 500ms ease-in-out;
     -ms-transition: all 500ms ease-in-out;
     -o-transition: all 500ms ease-in-out;
     transition: all 500ms ease-in-out;
     left: 50%;
-    top: 0; }
+    top: 50%;
+    display: none; }
     #odds-ends-cta .odds-ends-wrapper .odds-cta-wrapper p {
       color: #ffffff;
       font-weight: 600;
@@ -9648,6 +9648,9 @@ h1.home-template {
     -ms-transition: all 500ms ease-in-out;
     -o-transition: all 500ms ease-in-out;
     transition: all 500ms ease-in-out; }
+
+.wpb_video_wrapper {
+  padding: 0 !important; }
 
 #footer-menu .menu-item {
   float: none;
@@ -9934,6 +9937,32 @@ h1.home-template {
             font-size: 85px; } }
     .products-outer-wrapper .product-wrapper .image-wrapper .sold-overlay.sold {
       display: block; }
+    .products-outer-wrapper .product-wrapper .image-wrapper .no-image-overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      top: 0;
+      left: 0;
+      z-index: 2; }
+      .products-outer-wrapper .product-wrapper .image-wrapper .no-image-overlay span {
+        position: absolute;
+        z-index: 3;
+        color: #ffffff;
+        font-size: 18px;
+        text-align: center;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        -webkit-transform: translateY(-50%);
+        top: 50%;
+        font-weight: 800; }
+        @media (min-width: 1150px) and (max-width: 1149px) {
+          .products-outer-wrapper .product-wrapper .image-wrapper .no-image-overlay span {
+            font-size: 1.56522vw; } }
+        @media (min-width: 1150px) {
+          .products-outer-wrapper .product-wrapper .image-wrapper .no-image-overlay span {
+            font-size: 18px; } }
   .products-outer-wrapper .product-wrapper .image-wrapper:before {
     content: "HOVER TO ZOOM";
     font-size: 10px;
@@ -9942,6 +9971,8 @@ h1.home-template {
     left: 0;
     font-weight: 700; }
   .products-outer-wrapper .product-wrapper .image-wrapper.sold:before {
+    content: ""; }
+  .products-outer-wrapper .product-wrapper .image-wrapper.no-image:before {
     content: ""; }
   .products-outer-wrapper .product-wrapper .extras-wrapper {
     margin-top: 20px; }
@@ -10378,6 +10409,9 @@ hr {
   margin-bottom: 30px;
   z-index: 0; }
 
+.owl-carousel .owl-stage-outer {
+  min-height: 250px !important; }
+
 @media screen and (max-width: 1149px) {
   .container {
     width: 100%; }
@@ -10448,7 +10482,9 @@ hr {
     width: 60% !important; }
   .product-intro p {
     font-size: 18px;
-    line-height: 22px; } }
+    line-height: 22px; }
+  .products-outer-wrapper .product-wrapper .image-wrapper::before {
+    content: ""; } }
 
 /* Mobile */
 @media screen and (max-width: 767px) {
@@ -10618,6 +10654,8 @@ hr {
     font-size: 20px;
     line-height: 26px; }
   .search-container.show-search {
-    bottom: -310px; }
+    bottom: -358px; }
   .contact-form-wrapper .enquiry-text {
-    font-size: 13px !important; } }
+    font-size: 13px !important; }
+  .owl-carousel .owl-stage-outer {
+    min-height: 200px !important; } }

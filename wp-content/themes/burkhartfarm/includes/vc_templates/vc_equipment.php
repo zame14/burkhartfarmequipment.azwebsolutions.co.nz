@@ -60,6 +60,7 @@ function bfeEquipment($atts) {
         $extras_date = getProductExtras($product->Item_ID, 2);
         $has_sold = getProductExtras($product->Item_ID, 3);
         ($has_sold == "Yes") ? $sold_class = 'sold' : $sold_class = '';
+        ($product->Item_Photo_URL == "") ? $sold_class = 'no-image' : $sold_class = '';
         ($product->Item_Price <> '') ? $display_price = '$' . $product->Item_Price . ' +GST' : $display_price = 'For sale price: Call';
         $ref = strtolower($product->Item_Name);
         $ref = str_replace(" ", "_", $ref);
@@ -78,14 +79,20 @@ function bfeEquipment($atts) {
                         // this product has more than images - use owl carousel
                         $html .= '
                         <div class="owl-carousel owl-theme">
-                            <div><img src="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '" data-zoom-image="' . $product->Item_Photo_URL . '" class="first"></div>';
+                            <div><img src="' . wp_make_link_relative($product->Item_Photo_URL) . '" alt="' . $product->Item_Name . '" data-zoom-image="' . wp_make_link_relative($product->Item_Photo_URL) . '" class="first"></div>';
                             foreach($product_images as $image) {
-                                $html .= '<div><img src="' . $image . '" alt="' . $product->Item_Name . '" data-zoom-image="' . $image . '"></div>';
+                                $html .= '<div><img src="' . wp_make_link_relative($image) . '" alt="' . $product->Item_Name . '" data-zoom-image="' . wp_make_link_relative($image) . '"></div>';
                             }
                         $html .= '
                         </div>';
                     } else {
-                        $html .= '<img src="' . $product->Item_Photo_URL . '" data-zoom-image="' . $product->Item_Photo_URL . '" alt="' . $product->Item_Name . '" class="first">';
+                        if($product->Item_Photo_URL <> "") {
+                            $html .= '<img src="' . wp_make_link_relative($product->Item_Photo_URL) . '" data-zoom-image="' . wp_make_link_relative($product->Item_Photo_URL) . '" alt="' . $product->Item_Name . '" class="first">';
+                        } else {
+                            $html .= '
+                            <img src="' . get_stylesheet_directory_uri() . '/images/no-image.jpg" alt="" />
+                            <div class="no-image-overlay ' . $sold_class . '"><span>No Image Available</span></div>';
+                        }
                     }
                     $html .= ' 
                     <div class="sold-overlay ' . $sold_class . '"><span>SOLD</span></div>

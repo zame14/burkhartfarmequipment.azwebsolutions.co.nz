@@ -384,12 +384,12 @@ h1.home-template {
       position: absolute;
       z-index: 2;
       border-radius: 5px;
-      transform: translate(-50%, -100%);
-      -webkit-transform: translate(-50%, -100%);
-      visibility: hidden;
+      transform: translate(-50%, -50%);
+      -webkit-transform: translate(-50%, -50%);
       @include hpTransition(all, 500ms);
       left: 50%;
-      top: 0;
+      top: 50%;
+      display: none;
       p {
         color: #ffffff;
         font-weight: 600;
@@ -407,6 +407,9 @@ h1.home-template {
       @include hpTransition(all, 500ms);
     }
   }
+}
+.wpb_video_wrapper {
+  padding: 0 !important;
 }
 #footer-menu {
   .menu-item {
@@ -688,6 +691,28 @@ h1.home-template {
       .sold-overlay.sold {
         display: block;
       }
+      .no-image-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        top: 0;
+        left: 0;
+        z-index: 2;
+        span {
+          position: absolute;
+          z-index: 3;
+          color: #ffffff;
+          @include font-size(18px);
+          text-align: center;
+          left: 0;
+          right: 0;
+          transform: translateY(-50%);
+          -webkit-transform: translateY(-50%);
+          top: 50%;
+          font-weight: 800;
+        }
+      }
     }
     .image-wrapper:before {
       content: "HOVER TO ZOOM";
@@ -698,6 +723,9 @@ h1.home-template {
       font-weight: 700;
     }
     .image-wrapper.sold:before {
+      content: "";
+    }
+    .image-wrapper.no-image:before {
       content: "";
     }
     .extras-wrapper {
@@ -1008,6 +1036,9 @@ hr {
   margin-bottom: 30px;
   z-index: 0;
 }
+.owl-carousel .owl-stage-outer {
+  min-height: 250px !important;
+}
 @media screen and (max-width: 1149px) {
   .container {
     width: 100%;
@@ -1118,6 +1149,9 @@ hr {
   .product-intro p {
     font-size: 18px;
     line-height: 22px;
+  }
+  .products-outer-wrapper .product-wrapper .image-wrapper::before {
+    content: "";
   }
 }
 /* Mobile */
@@ -1313,9 +1347,12 @@ hr {
     line-height: 26px;
   }
   .search-container.show-search {
-    bottom: -310px;
+    bottom: -358px;
   }
   .contact-form-wrapper .enquiry-text {
     font-size: 13px !important;
+  }
+  .owl-carousel .owl-stage-outer {
+    min-height: 200px !important;
   }
 }
